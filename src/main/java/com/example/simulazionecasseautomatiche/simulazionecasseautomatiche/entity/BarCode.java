@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -22,9 +23,9 @@ public class BarCode implements Serializable {
     @Column(name = "BAR_CODE_ID")
     private Long barCodeId;
 
-    private String startDate;
+    private LocalDate startDate;
 
-    private String endDate;
+    private LocalDate endDate;
 
     @Column(name = "BAR_CODE_CODE")
     private String code;

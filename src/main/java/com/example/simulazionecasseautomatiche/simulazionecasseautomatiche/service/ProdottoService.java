@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -108,7 +107,23 @@ public class ProdottoService {
 
         List<Prodotto> prodotti = repository.findAll();
 
-        return prodotti.stream().map(this::mapToProduct).collect(Collectors.toList());
+        List<ProdottoDTO> prodottiList = new ArrayList<>();
+
+        List<BarCode> barCodes = new ArrayList<>();
+
+        for (Prodotto p: prodotti){
+            barCodes = barCodeRepository.findAllByProductId(p);
+            prodottiList.add(ProdottoDTO.builder()
+                            .nomeProdotto(p.getNomeProdotto())
+                            .barCodeList(barCodes.stream().map(BarCode::getCode).toList())
+                            .prezzo(p.getPrezzo())
+                            .reparto(p.getReparto().getCodiceReparto())
+                            .udm(p.getUdm().getCodiceUdm())
+                            .grammatura(p.getGrammatura())
+                    .build());
+        }
+
+        return prodottiList;
 
     }
 
@@ -166,7 +181,7 @@ public class ProdottoService {
 
         Map<String, Float> map = new HashMap<>();
 
-        List<Scontrino> scontrini = scontrinoRepository.findAll();
+        List<Scontrino> scontrini = scontrinoRepository.findAll().stream().filter(s-> s.getDataDiAcquisto().equals(data)).toList();
         for (Scontrino s : scontrini) {
             for (DettaglioScontrino d : s.getDettaglioScontrino()) {
                 Prodotto prodotto = repository.findById(d.getProdottoId()).orElseThrow();

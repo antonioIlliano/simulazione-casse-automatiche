@@ -50,6 +50,7 @@ public class ScontrinoService {
 
         for(Long id: prodottiIds){
             Prodotto prodotto = prodottoRepository.findById(id).orElseThrow(()-> new RuntimeException());
+            prodotto.setStock(prodotto.getStock()-1);
             if(!map.containsKey(prodotto.getNomeProdotto())) {
                 map.put(prodotto.getNomeProdotto(), prodotto.getPrezzo());
             }else{
@@ -100,18 +101,6 @@ public class ScontrinoService {
        return recursiveStrings;
     }
 
-
-    private List<Float> totalOfRecursiveSrings(Map<Long, Integer> mappa, Float prezzo){
-
-        List<Float> totale = new ArrayList<>();
-
-        mappa.forEach((k, v) -> {
-            if(v > 1){
-               totale.add(prezzo * v);
-            }
-        });
-        return totale;
-    }
 
     public Float getTotaleByDay(LocalDate data) {
 

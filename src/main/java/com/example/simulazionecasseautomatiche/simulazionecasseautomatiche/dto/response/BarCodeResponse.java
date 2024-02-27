@@ -1,6 +1,9 @@
 package com.example.simulazionecasseautomatiche.simulazionecasseautomatiche.dto.response;
 
 import lombok.*;
+import org.springframework.dao.DataAccessException;
+import java.time.LocalDate;
+
 
 
 @Data
@@ -9,9 +12,9 @@ import lombok.*;
 @NoArgsConstructor
 public class BarCodeResponse {
 
-    private String startDate;
+    private LocalDate startDate;
 
-    private String endDate;
+    private LocalDate endDate;
 
     private String code;
 

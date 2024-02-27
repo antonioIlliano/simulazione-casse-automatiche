@@ -14,6 +14,8 @@ public interface BarCodeRepository extends JpaRepository<BarCode, Long> {
 
     BarCode findByCodeIgnoreCase(String code);
 
+    List<BarCode> findAllByProductId(Prodotto prodottoId);
+
 
     @Query(value = "SELECT product_id FROM bar_code WHERE bar_code_code IN :barCodes", nativeQuery = true)
     List<Long> findAllIdsByBarCodeIn (@Param("barCodes") List<String> barCodes);

@@ -3,8 +3,8 @@ package com.example.simulazionecasseautomatiche.simulazionecasseautomatiche.dto;
 
 import lombok.*;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+
 
 @Data
 @AllArgsConstructor
@@ -12,9 +12,9 @@ import java.util.List;
 @Builder
 public class BarCodeDTO {
 
-    private String startDate;
+    private LocalDate startDate;
 
-    private String endDate;
+    private LocalDate endDate;
 
     private String code;
 

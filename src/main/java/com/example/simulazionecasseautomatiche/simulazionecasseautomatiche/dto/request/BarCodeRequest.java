@@ -1,6 +1,7 @@
 package com.example.simulazionecasseautomatiche.simulazionecasseautomatiche.dto.request;
 
 import lombok.*;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -8,9 +9,9 @@ import lombok.*;
 @Builder
 public class BarCodeRequest {
 
-    private String startDate;
+    private LocalDate startDate;
 
-    private String endDate;
+    private LocalDate endDate;
 
     private String nomeProdotto;
 

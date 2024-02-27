@@ -23,6 +23,7 @@ public class ScontrinoController {
 
     @PostMapping("/createRecipt")
     public ResponseEntity<CreazioneScontrinoResponse> createRecipt(@RequestBody CreazioneScontrinoRequest request) throws Exception {
+
         return ResponseEntity.ok(scontrinoService.createScontrino(request));
     }
 
