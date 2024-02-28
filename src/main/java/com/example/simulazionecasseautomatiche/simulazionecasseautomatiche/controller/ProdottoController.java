@@ -50,4 +50,8 @@ public class ProdottoController {
         return ResponseEntity.ok(prodottoService.getImportoAnnuoByReparto(anno));
     }
 
+    @PutMapping("/updatePrice")
+    public ResponseEntity<ProdottoDTO> updatePrice(@RequestParam("id") Long id, @RequestParam("price") Float price){
+        return ResponseEntity.ok(prodottoService.updatePrice(id, price));
+    }
 }

@@ -2,6 +2,7 @@ package com.example.simulazionecasseautomatiche.simulazionecasseautomatiche;
 
 import com.mysql.cj.jdbc.JdbcConnection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +20,12 @@ import java.sql.SQLException;
 @SpringBootApplication
 @EnableJpaRepositories
 public class SimulazioneCasseAutomaticheApplication {
+	@Value("{spring.datasource.url}")
+	String url;
+	@Value("{spring.datasource.username}")
+	String username;
+	@Value("{spring.datasource.password}")
+	String password;
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SimulazioneCasseAutomaticheApplication.class, args);
 
@@ -28,7 +35,6 @@ public class SimulazioneCasseAutomaticheApplication {
 	public static class Runner implements CommandLineRunner{
 		@Override
 		public void run(String... args) throws Exception {
-
 
 			DataSource dataSource = DataSourceBuilder.create().url("jdbc:mysql://localhost:3306/esercizio").username("root").password("root").build();
 			try(Connection connection = dataSource.getConnection()){

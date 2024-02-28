@@ -230,4 +230,20 @@ public class ProdottoService {
 
         return map;
     }
+
+    public ProdottoDTO updatePrice(Long id, Float price) {
+
+        Prodotto prodotto = repository.findById(id).orElseThrow();
+
+        prodotto.setPrezzo(price);
+        repository.save(prodotto);
+
+        return ProdottoDTO.builder()
+                .grammatura(prodotto.getGrammatura())
+                .nomeProdotto(prodotto.getNomeProdotto())
+                .udm(prodotto.getUdm().getCodiceUdm())
+                .reparto(prodotto.getReparto().getCodiceReparto())
+                .prezzo(prodotto.getPrezzo())
+                .build();
+    }
 }
